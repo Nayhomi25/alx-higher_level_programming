@@ -4,7 +4,7 @@
 
 class Square:
     """ Private instance atrribute: size """
-    def __init__(self, size=0, position=(0,0)):
+    def __init__(self, size=0, position=(0, 0)):
         """ Initializes attribute size """
         self.__size = size
         self.__position = position
@@ -36,7 +36,7 @@ class Square:
     @position.setter
     def position(self, value):
         """Initializes attribute position"""
-        if len(value) is not 2:
+        if len(value) != 2:
             raise TypeError("position must be a tuple of 2 positive integers")
         if (type(value[0]) is not int or value[0] < 0):
             raise TypeError("position must be a tuple of 2 positive integers")
