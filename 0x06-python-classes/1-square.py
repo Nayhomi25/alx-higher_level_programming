@@ -1,4 +1,4 @@
-#!/user/bin/python3
+#!/usr/bin/python3
 """ filename: 1-square.py """
 
 
