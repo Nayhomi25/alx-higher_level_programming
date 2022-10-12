@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """ Check Type """
 
+
 class Square:
     """Private instance attribute: size
     Instantiation with optional """
