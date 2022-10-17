@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Write a class Rectangle that defines a rectangle by: (based on 8-rectangle.py)
+Write a class Rectangle that defines a rectangle by: (based on 7-rectangle.py)
 """
 
 
@@ -15,6 +15,14 @@ class Rectangle:
         """
         Initializes private attribute width and height
         """
+        if not isinstance(width, int):
+            raise TypeError('width must be an integer')
+        if width < 0:
+            raise ValueError('width must be >= 0')
+        if not isinstance(height, int):
+            raise TypeError('height must be an integer')
+        if height < 0:
+            raise ValueError('height must be >= 0')
         self.width = width
         self.height = height
         Rectangle.number_of_instances += 1
@@ -32,7 +40,7 @@ class Rectangle:
         width setter
         """
         if not isinstance(value, int):
-            TypeError('width must be an integer')
+            raise TypeError('width must be an integer')
         if value < 0:
             raise ValueError('width must be >= 0')
         self.__width = value
@@ -50,28 +58,28 @@ class Rectangle:
         width setter
         """
         if not isinstance(value, int):
-            TypeError('width must be an integer')
+            raise TypeError('height must be an integer')
         if value < 0:
-            raise ValueError('width must be >= 0')
+            raise ValueError('height must be >= 0')
         self.__height = value
 
     def area(self):
         """
         Returns a rectangle's area
         """
-        return self.width * self.height
+        return self.__width * self.__height
 
     def perimeter(self):
         """
         Returns a rectangle's perimeter
         """
-        if self.width == 0 or self.height == 0:
+        if self.__width == 0 or self.__height == 0:
             return 0
-        return(2 * (self.width + self.height))
+        return (self.width + self.height) * 2
 
     def __str__(self):
         """
-        String represenation
+        String representation method
         """
         string = ""
         for i in range(self.height):
@@ -82,10 +90,12 @@ class Rectangle:
         """
         Representation
         """
-        return "Rectangle({}, {})".format(self.width, self.height)
+        return "Rectangle({}, {})".format(self.__width, self.__height)
 
     def __del__(self):
-        """ delete an instance of rectangle """
+        """
+        Delete
+        """
         print('Bye rectangle...')
         Rectangle.number_of_instances -= 1
 
@@ -108,3 +118,4 @@ class Rectangle:
     @classmethod
     def square(cls, size=0):
         return cls(size, size)
+       
