@@ -1,0 +1,5 @@
+# ignore all main.py files
+*main.py
+
+# ignore all pyc files
+*.pyc
