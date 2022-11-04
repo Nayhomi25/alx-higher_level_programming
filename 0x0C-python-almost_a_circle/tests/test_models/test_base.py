@@ -1,8 +1,15 @@
 #!/usr/bin/python3
+""" This module contains all unittests Base class"""
+
 import unittest
-from models.base import Base
 from models.square import Square
+import sys
+from io import StringIO
+import pep8
+from models.base import Base
 import json
+from models.rectangle import Rectangle
+import os
 import inspect
 
 '''
