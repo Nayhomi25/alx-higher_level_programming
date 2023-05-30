@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+"""working with python bytecode """
 import math
 
 
