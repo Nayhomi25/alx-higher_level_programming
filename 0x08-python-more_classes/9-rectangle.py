@@ -88,7 +88,7 @@ class Rectangle:
     @classmethod
     def square(cls, size=0):
         """Return a new Rectangle with width and height equal to size."""
-        return (cls(size, size))
+        return Rectangle(size, size)
 
     def __str__(self):
         """Return the printable representation of the Rectangle.
