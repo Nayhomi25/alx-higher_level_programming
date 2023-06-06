@@ -1,0 +1,4 @@
+#ignore some files
+*main.py
+__pycache__
+.gitignoe
