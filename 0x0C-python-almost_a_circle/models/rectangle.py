@@ -61,13 +61,13 @@ class Rectangle(Base):
             raise ValueError("x must be >= 0")
 
         self.__x = value
-        
+
     @property
     def y(self):
         """retrives the y attribute"""
         return self.__y
 
-     @y.setter
+    @y.setter
     def y(self, value):
         """Sets the value for y"""
         if (type(value) is not int):
