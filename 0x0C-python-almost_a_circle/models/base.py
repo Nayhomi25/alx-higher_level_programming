@@ -72,7 +72,7 @@ class Base:
                 for dictionary in list_dictionaries:
                     list_of_instances.append(cls.create(**dictionary))
         return list_of_instances
-        
+
     @classmethod
     def save_to_file_csv(cls, list_objs):
         """Serializes list_objs and saves to file"""
@@ -88,7 +88,7 @@ class Base:
                 writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
                 for obj in list_objs:
                     writer.writerow(obj.to_dictionary())
-                    
+
     @classmethod
     def load_from_file_csv(cls):
         """Deserializes CSV format from a file"""
