@@ -3,6 +3,7 @@
 import json
 import csv
 import turtle
+import os
 
 
 class Base:
@@ -47,29 +48,34 @@ class Base:
 
     @classmethod
     def create(cls, **dictionary):
-        """Return a class instantied from a dictionary of attributes"""
-        if dictionary and dictionary != {}:
-            if cls.__name__ == "Rectangle":
-                new = cls(1, 1)
-            else:
-                new = cls(1)
-            new.update(**dictionary)
-            return new
+        """Returns an instance with all attributes already set"""
+        if cls.__name__ == 'Rectangle':
+            dummy = cls(1, 1)
+        elif cls.__name__ == 'Square':
+            dummy = cls(1)
+
+        dummy.update(**dictionary)
+        return dummy
 
     @classmethod
     def load_from_file(cls):
-        """Return a list of classes instantiated from a file of JSON strings"""
-        filename = str(cls.__name__) + ".json"
-        try:
-            with open(filename, "r") as jsonfile:
-                list_dicts = Base.from_json_string(jsonfile.read())
-                return [cls.create(**d) for d in list_dicts]
-        except IOError:
-            return []
+        """Returns a list of instances"""
 
+        file_name = cls.__name__ + ".json"
+        list_of_instances = []
+        list_dictionaries = []
+
+        if os.path.exists(file_name):
+            with open(file_name, 'r') as my_file:
+                my_str = my_file.read()
+                list_dictionaries = cls.from_json_string(my_str)
+                for dictionary in list_dictionaries:
+                    list_of_instances.append(cls.create(**dictionary))
+        return list_of_instances
+        
     @classmethod
     def save_to_file_csv(cls, list_objs):
-        """Write the CSV serialization of a list of objects to a file."""
+        """Serializes list_objs and saves to file"""
         filename = cls.__name__ + ".csv"
         with open(filename, "w", newline="") as csvfile:
             if list_objs is None or list_objs == []:
@@ -82,10 +88,10 @@ class Base:
                 writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
                 for obj in list_objs:
                     writer.writerow(obj.to_dictionary())
-
+                    
     @classmethod
     def load_from_file_csv(cls):
-        """Return a list of classes instantiated from a CSV file."""
+        """Deserializes CSV format from a file"""
         filename = cls.__name__ + ".csv"
         try:
             with open(filename, "r", newline="") as csvfile:
@@ -102,7 +108,11 @@ class Base:
 
     @staticmethod
     def draw(list_rectangles, list_squares):
-        """Draw Rectangles and Squares using the turtle module."""
+        """Draw Rectangles and Squares using the turtle module.
+        Args:
+            list_rectangles (list): A list of Rectangle objects to draw.
+            list_squares (list): A list of Square objects to draw.
+        """
         turt = turtle.Turtle()
         turt.screen.bgcolor("#b7312c")
         turt.pensize(3)
