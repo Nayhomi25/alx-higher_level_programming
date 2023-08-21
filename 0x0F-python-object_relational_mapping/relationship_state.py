@@ -5,8 +5,7 @@ Contains State class and Base, an instance of declarative_base()
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
-
-Base = declarative_base()
+from relationship_city import Base, City
 
 
 class State(Base):
